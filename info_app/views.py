@@ -12,3 +12,6 @@ def resources(request):
 
 def support(request):
     return render(request, 'info_app/support.html')
+
+def projects(request):
+    return render(request, 'info_app/projects.html')
