@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Projects • ITC3380 - IT@FMSCUSJP - 2025 Batch</title>
+    <meta
+      name="description"
+      content="Project brief, milestones and submission guidelines for the group project."
+    />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      /* Keep styling consistent with welcome page */
+      :root {
+        --bg: #0b1220;
+        --card: #101a2e;
+        --muted: #9fb3c8;
+        --text: #e8f0fe;
+        --accent: #60a5fa;
+        --accent-2: #22d3ee;
+        --radius: 12px;
+      }
+      @media (prefers-color-scheme: light) {
+        :root {
+          --bg: #f7fafc;
+          --card: #fff;
+          --muted: #4b5563;
+          --text: #0b1220;
+          --accent: #2563eb;
+          --accent-2: #0891b2;
+        }
+      }
+      * {
+        box-sizing: border-box;
+      }
+      html,
+      body {
+        height: 100%;
+      }
+      body {
+        margin: 0;
+        font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial,
+          sans-serif;
+        background: linear-gradient(180deg, var(--bg), var(--bg));
+        color: var(--text);
+        padding: 28px;
+      }
+      .wrap {
+        max-width: 960px;
+        margin: 0 auto;
+        background: transparent;
+      }
+      header {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        margin-bottom: 18px;
+      }
+      .logo {
+        width: 56px;
+        height: 56px;
+        border-radius: 12px;
+        background: linear-gradient(135deg, var(--accent), var(--accent-2));
+        display: grid;
+        place-items: center;
+      }
+      h1 {
+        margin: 0;
+        font-size: 20px;
+      }
+      .subtitle {
+        margin: 6px 0 18px;
+        color: var(--muted);
+      }
+      .card {
+        background: var(--card);
+        padding: 18px;
+        border-radius: var(--radius);
+        box-shadow: 0 8px 24px rgba(2, 6, 23, 0.45);
+        border: 1px solid rgba(148, 163, 184, 0.06);
+      }
+      .grid {
+        display: grid;
+        gap: 16px;
+      }
+      h2 {
+        margin: 0 0 8px;
+      }
+      .muted {
+        color: var(--muted);
+      }
+      ul {
+        margin: 8px 0 0 20px;
+      }
+      ol {
+        margin: 8px 0 0 20px;
+      }
+      .milestones {
+        display: grid;
+        gap: 10px;
+      }
+      .milestone {
+        background: rgba(255, 255, 255, 0.02);
+        padding: 12px;
+        border-radius: 10px;
+        border: 1px solid rgba(255, 255, 255, 0.03);
+      }
+      .tips {
+        margin-top: 12px;
+        padding: 12px;
+        background: linear-gradient(
+          90deg,
+          rgba(96, 165, 250, 0.06),
+          rgba(34, 211, 238, 0.04)
+        );
+        border-radius: 10px;
+        border: 1px solid rgba(96, 165, 250, 0.06);
+        color: var(--text);
+      }
+      a.btn {
+        display: inline-block;
+        padding: 10px 14px;
+        border-radius: 999px;
+        background: var(--accent);
+        color: #081018;
+        font-weight: 700;
+        text-decoration: none;
+      }
+      footer {
+        margin-top: 18px;
+        color: var(--muted);
+        font-size: 13px;
+      }
+      @media (max-width: 660px) {
+        body {
+          padding: 16px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="wrap" role="main">
+      <header>
+        <div class="logo" aria-hidden="true">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none">
+            <path
+              d="M12 2l7 4v6c0 4-3 7-7 10-4-3-7-6-7-10V6l7-4z"
+              stroke="currentColor"
+              stroke-width="1.4"
+            />
+          </svg>
+        </div>
+        <div>
+          <h1>Group Project — ITC3380</h1>
+          <p class="subtitle">
+            This page describes the project brief, suggested milestones, and how
+            to submit. Start early and iterate!
+          </p>
+        </div>
+      </header>
+
+      <section class="grid">
+        <article class="card" aria-labelledby="brief">
+          <h2 id="brief">Project brief</h2>
+          <p class="muted">
+            Build a small, working software system that solves a real-world
+            problem. Work in groups of 3–4. The project should demonstrate
+            applied skills from the course: requirements analysis, design,
+            implementation, testing, and deployment (or a demo).
+          </p>
+
+          <h3 style="margin-top: 12px">Deliverables</h3>
+          <ul>
+            <li>
+              Project report (PDF) — objectives, design, architecture, and
+              evaluation.
+            </li>
+            <li>
+              Source code repository (GitHub/GitLab) with a clear README and
+              setup steps.
+            </li>
+            <li>
+              A short demo video (5–8 minutes) or a live demo during the lab
+              slot.
+            </li>
+          </ul>
+
+          <h3 style="margin-top: 12px">Assessment criteria</h3>
+          <ul>
+            <li>Functionality & correctness (40%)</li>
+            <li>Design & code quality (25%)</li>
+            <li>Testing & documentation (20%)</li>
+            <li>Presentation & demo (15%)</li>
+          </ul>
+        </article>
+
+        <article class="card" aria-labelledby="milestones">
+          <h2 id="milestones">Milestones (suggested)</h2>
+          <p class="muted">
+            Split the work into short, testable milestones. Below is a suggested
+            schedule — adapt to your team velocity and course timeline.
+          </p>
+
+          <div class="milestones">
+            <div class="milestone">
+              <strong>Week 1 — Proposal & Team setup</strong>
+              <p class="muted">
+                Choose idea, form teams, draft a 1-page proposal with objectives
+                and main features.
+              </p>
+            </div>
+            <div class="milestone">
+              <strong>Week 2 — Requirements & initial design</strong>
+              <p class="muted">
+                Write user stories/use cases, sketch the architecture, choose
+                core technologies and data model.
+              </p>
+            </div>
+            <div class="milestone">
+              <strong>Week 3–5 — Core implementation</strong>
+              <p class="muted">
+                Implement the main features, create automated tests, and push
+                incremental commits to the repo.
+              </p>
+            </div>
+            <div class="milestone">
+              <strong>Week 6 — Integration & testing</strong>
+              <p class="muted">
+                Polish features, fix bugs, add tests, and prepare a
+                deployment/demo environment or recorded demo.
+              </p>
+            </div>
+            <div class="milestone">
+              <strong>Week 7 — Documentation & final report</strong>
+              <p class="muted">
+                Write the project report, prepare slides, and finalise the
+                README with setup/run instructions.
+              </p>
+            </div>
+          </div>
+        </article>
+
+        <article class="card" aria-labelledby="submission">
+          <h2 id="submission">Submission guidelines</h2>
+          <p class="muted">
+            Follow these steps to submit your project correctly. Late penalties
+            apply unless agreed with the instructor in advance.
+          </p>
+
+          <ol>
+            <li>
+              <strong>Repository:</strong> Push the final code to a public or
+              private repo and grant the teaching team read access. Include a
+              clear README with setup, run, and test instructions.
+            </li>
+            <li>
+              <strong>Report:</strong> Upload the PDF report to the LMS
+              assignment page. The report should include team member
+              contributions and a short evaluation of limitations.
+            </li>
+            <li>
+              <strong>Demo:</strong> Share the demo video link (YouTube unlisted
+              or similar) or be prepared for the in-class live demo slot.
+            </li>
+            <li>
+              <strong>Tagging:</strong> In the repo description add:
+              <code>ITC3380 - Group Project - 2025 - Team &lt;X&gt;</code> and
+              include a link to the report in the README.
+            </li>
+          </ol>
+
+          <h4 style="margin-top: 10px">Submission checklist</h4>
+          <ul>
+            <li>README with quickstart and dependency list</li>
+            <li>Tests and instructions to run them</li>
+            <li>Report PDF uploaded to LMS</li>
+            <li>Demo video link or demo time slot reserved</li>
+          </ul>
+
+          <div style="margin-top: 10px">
+            <a class="btn" href="#" aria-label="Submit"
+              >Submission Page (LMS)</a
+            >
+          </div>
+        </article>
+
+        <article class="card" aria-labelledby="start">
+          <h2 id="start">Start early and iterate!</h2>
+          <p class="muted">
+            Begin small: deliver a minimal, working slice early and iterate.
+            Frequent commits and short feedback loops reduce integration risk.
+          </p>
+
+          <div class="tips">
+            <strong>Tips for success</strong>
+            <ul style="margin-top: 8px">
+              <li>
+                Keep a visible issue board (GitHub Issues or similar) and track
+                tasks.
+              </li>
+              <li>
+                Split features into small PRs and review each other's code.
+              </li>
+              <li>Write at least a few automated tests for critical paths.</li>
+              <li>
+                Document how to run the project in 3 steps or less in the
+                README.
+              </li>
+              <li>
+                Communicate weekly and set a demo milestone at least one week
+                before submission.
+              </li>
+            </ul>
+          </div>
+        </article>
+      </section>
+
+      <footer>
+        <p class="muted">
+          Questions? Contact the teaching team via the LMS or email the course
+          coordinator.
+        </p>
+        <p>
+          &copy; 2025 Department of Information Technology — Project guidance
+        </p>
+      </footer>
+    </main>
+  </body>
+</html>
