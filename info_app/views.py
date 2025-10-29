@@ -15,3 +15,7 @@ def support(request):
 
 def projects(request):
     return render(request, 'info_app/projects.html')
+
+def lab_sessions(request):
+    return render(request, 'info_app/lab_sessions.html')
+
