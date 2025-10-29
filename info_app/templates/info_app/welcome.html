@@ -134,7 +134,7 @@
       border-radius: var(--radius);
       padding: 18px 18px 16px;
       box-shadow: var(--shadow);
-      transition: transform .12s ease, border-color .2s ease, box-shadow .2s ease;
+      transition: transform .12s ease, border-color .2s ease, box-shadow .2s ease, background .2s ease;
     }
     .card:hover{ transform: translateY(-3px) }
     .card h3{
@@ -170,6 +170,27 @@
       border: 1px solid rgba(148,163,184,.35);
       background: rgba(255,255,255,.05);
     }
+
+    /* clickable card styles */
+    .card-link {
+      text-decoration: none;
+      color: inherit;
+      display: block;
+    }
+    .support-card {
+      cursor: pointer;
+    }
+    .support-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 0 20px rgba(96,165,250,0.35);
+      border-color: rgba(96,165,250,.55);
+    }
+    .support-card:active {
+      transform: scale(0.98);
+      background: rgba(96,165,250,0.15);
+      box-shadow: 0 0 25px rgba(96,165,250,0.45);
+      border-color: var(--accent);
+    }
   </style>
 </head>
 <body>
@@ -189,21 +210,18 @@
       </p>
       <nav class="cta" aria-label="Primary">
         <a class="btn" href="#" role="button" aria-label="Go to course outline">
-          <!-- icon -->
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
             <path d="M4 6h16M4 12h16M4 18h10" stroke="#081018" stroke-width="2" stroke-linecap="round"/>
           </svg>
           Course Outline
         </a>
         <a class="btn secondary" href="#" role="button" aria-label="Open LMS">
-          <!-- icon -->
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
             <path d="M3 7h18M3 12h18M3 17h18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
           </svg>
           LMS
         </a>
         <a class="btn secondary" href="#" role="button" aria-label="Contact the course team">
-          <!-- icon -->
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
             <path d="M21 8v8a3 3 0 0 1-3 3H6l-3 3V8a3 3 0 0 1 3-3h12a3 3 0 0 1 3 3z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
           </svg>
@@ -233,11 +251,16 @@
         <h3>Reading & Slides</h3>
         <p>Access lecture slides, recommended readings, and supplementary materials.</p>
       </article>
-      <article class="card">
-        <span class="pill">Support</span>
-        <h3>Ask & Discuss</h3>
-        <p>Use the forum to post questions and collaborate with peers and the teaching team.</p>
-      </article>
+
+      <!-- clickable support card -->
+      <a href="{% url 'support' %}" class="card-link">
+        <article class="card support-card">
+          <span class="pill">Support</span>
+          <h3>Ask & Discuss</h3>
+          <p>Use the forum to post questions and collaborate with peers and the teaching team.</p>
+        </article>
+      </a>
+
       <article class="card">
         <span class="pill">Calendar</span>
         <h3>Important Dates</h3>
