@@ -25,7 +25,25 @@ SECRET_KEY = 'django-insecure-xq6f3m@x11g5*@w9=@crocsfro!a3%@ndn=v2)$p1ltnpl54hc
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['*']
+
+PRODUCTION_HOST = os.environ.get('PRODUCTION_HOST')
+
+if PRODUCTION_HOST:
+    # We are in the Azure/Production environment
+    # Note: We split by comma in case you have multiple domains
+    ALLOWED_HOSTS = PRODUCTION_HOST.split(',') 
+    
+    # We should also enable secure cookies in this block
+    CSRF_COOKIE_SECURE = True
+    SESSION_COOKIE_SECURE = True
+    
+else:
+    # We are in the Local Development environment
+    ALLOWED_HOSTS = [] # or ['127.0.0.1', 'localhost']
+
+    # Cookies don't need to be secure locally
+    CSRF_COOKIE_SECURE = False
+    SESSION_COOKIE_SECURE = False
 
 
 # Application definition
