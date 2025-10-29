@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Group Project • ITC3380</title>
+  <style>
+    body{ font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial; padding:24px; line-height:1.5; background:#f7fafc; color:#0b1220 }
+    .card{ background:#fff; border-radius:12px; padding:18px; max-width:900px; margin:18px auto; box-shadow:0 6px 18px rgba(2,6,23,.06) }
+    h1{ margin-top:0 }
+    ul{ margin-top:6px }
+    pre{ background:#0b1220; color:#e8f0fe; padding:12px; border-radius:8px; overflow:auto }
+    .muted{ color:#6b7280 }
+  </style>
+</head>
+<body>
+  <main class="card">
+    <h1>Group Project — ITC3380 (2025)</h1>
+    <p class="muted">Project brief, milestones, and submission guidelines. Start early and iterate — use Git for collaboration.</p>
+
+    <h2>Project brief</h2>
+    <p>Form groups of 3–5. Build a small web application (Django, Flask, or similar) that solves a real user problem. Demonstrate planning, source control, and basic deployment steps.</p>
+
+    <h3>Minimum requirements</h3>
+    <ul>
+      <li>User authentication (signup/login)</li>
+      <li>At least one CRUD model with list/detail views</li>
+      <li>Responsive UI and basic tests (unit or integration)</li>
+      <li>Source control history with meaningful commits and a short README</li>
+    </ul>
+
+    <h2>Milestones (suggested)</h2>
+    <ol>
+      <li>Week 1 — Team formation, idea & rough sketch (1 page)</li>
+      <li>Week 2 — Project planning: routes, models, tasks; initial repo & README</li>
+      <li>Week 4 — Core functionality implemented (CRUD + auth)</li>
+      <li>Week 6 — UI improvements, tests, documentation</li>
+      <li>Week 8 — Final polish, deploy demo, prepare presentation</li>
+    </ol>
+
+    <h2>Submission guidelines</h2>
+    <ul>
+      <li>Push your final code to GitHub (or GitLab) and provide a repo link.</li>
+      <li>Ensure README contains setup instructions and a short project description.</li>
+      <li>Include a short video (2–5 minutes) or screenshots showing the app and key features.</li>
+      <li>Tag the instructor's account or share the link via the LMS before the deadline.</li>
+    </ul>
+
+    <h2>Git practice (recommended)</h2>
+    <p>Use feature branches and PRs. Example commands:</p>
+    <pre>
+git init
+git checkout -b feature/your-feature
+git add .
+git commit -m "Add initial feature"
+git push origin feature/your-feature
+    </pre>
+
+    <footer class="muted">Back to <a href="{% url 'welcome' %}">welcome page</a></footer>
+  </main>
+</body>
+</html>
