@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="en">
+
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -14,32 +15,41 @@
       padding: 40px;
       line-height: 1.6;
     }
+
     .container {
       max-width: 900px;
       margin: 0 auto;
     }
+
     h1 {
       font-size: 32px;
       font-weight: 800;
       margin-bottom: 10px;
     }
+
     p {
       color: #9fb3c8;
       margin-bottom: 24px;
     }
+
     .card {
       background: #101a2e;
-      border: 1px solid rgba(148,163,184,.20);
+      border: 1px solid rgba(148, 163, 184, .20);
       border-radius: 16px;
       padding: 20px 24px;
       margin-bottom: 20px;
-      box-shadow: 0 10px 30px rgba(2,6,23,.45);
+      box-shadow: 0 10px 30px rgba(2, 6, 23, .45);
     }
+
     a {
       color: #60a5fa;
       text-decoration: none;
     }
-    a:hover { text-decoration: underline; }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
     .back {
       display: inline-block;
       margin-top: 20px;
@@ -52,6 +62,7 @@
     }
   </style>
 </head>
+
 <body>
   <div class="container">
     <h1>Reading & Slides</h1>
@@ -82,7 +93,8 @@
       </ul>
     </div>
 
-    <a href="index.html" class="back">← Back to Home</a>
+    <a href="{% url 'welcome' %}" class="back">← Back to Home</a>
   </div>
 </body>
+
 </html>
