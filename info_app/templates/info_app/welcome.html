@@ -170,6 +170,23 @@
       border: 1px solid rgba(148,163,184,.35);
       background: rgba(255,255,255,.05);
     }
+    /* Make linked cards look identical to normal ones */
+    .card-link {
+      text-decoration: none;
+      color: inherit;
+      display: block;
+    }
+
+    .card-link .card {
+      height: 100%;
+      transition: transform 0.15s ease, box-shadow 0.2s ease;
+    }
+
+    .card-link:hover .card {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+    }
+
   </style>
 </head>
 <body>
@@ -238,11 +255,16 @@
         <h3>Ask & Discuss</h3>
         <p>Use the forum to post questions and collaborate with peers and the teaching team.</p>
       </article>
-      <article class="card">
-        <span class="pill">Calendar</span>
-        <h3>Important Dates</h3>
-        <p>View assessment dates, quizzes, and holidays. Sync with your device calendar.</p>
-      </article>
+      <!-- other cards ... -->
+
+      <!-- Calendar card linked to Django URL -->
+      <a href="{% url 'calendar' %}" class="card-link">
+        <article class="card">
+          <span class="pill">Calendar</span>
+          <h3>Important Dates</h3>
+          <p>View assessment dates, quizzes, and holidays. Sync with your device calendar.</p>
+        </article>
+      </a>
     </section>
 
     <footer>
