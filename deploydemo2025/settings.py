@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-xq6f3m@x11g5*@w9=@crocsfro!a3%@ndn=v2)$p1ltnpl54hc
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-
+# Determine the environment and set ALLOWED_HOSTS accordingly
 PRODUCTION_HOST = os.environ.get('PRODUCTION_HOST')
 
 if PRODUCTION_HOST:
@@ -39,7 +39,7 @@ if PRODUCTION_HOST:
     
 else:
     # We are in the Local Development environment
-    ALLOWED_HOSTS = [] # or ['127.0.0.1', 'localhost']
+    ALLOWED_HOSTS = ['127.0.0.1', 'localhost'] # or ['127.0.0.1', 'localhost']
 
     # Cookies don't need to be secure locally
     CSRF_COOKIE_SECURE = False
