@@ -9,3 +9,6 @@ def welcome(request):
 
 def resources(request):
     return render(request, 'info_app/resources.html')
+
+def support(request):
+    return render(request, 'info_app/support.html')
