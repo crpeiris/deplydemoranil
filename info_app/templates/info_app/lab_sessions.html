@@ -1,0 +1,203 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Lab Sessions — Timetable & Rooms</title>
+  <style>
+    :root{--accent:#0f62fe;--muted:#6b7280;--card:#ffffff;--bg:#f6f8fb}
+    *{box-sizing:border-box}
+    body{font-family:Inter,system-ui,Segoe UI,Roboto,Helvetica,Arial,sans-serif;margin:0;background:var(--bg);color:#0f1724}
+    .container{max-width:1000px;margin:40px auto;padding:24px}
+    header{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px}
+    h1{font-size:22px;margin:0}
+    p.lead{margin:6px 0 0;color:var(--muted)}
+    .card{background:var(--card);border-radius:12px;padding:18px;box-shadow:0 6px 18px rgba(16,24,40,0.06)}
+    .controls{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:12px}
+    .controls input, .controls select{padding:10px 12px;border-radius:8px;border:1px solid #e6e9ef;background:#fff;min-width:160px}
+    table{width:100%;border-collapse:collapse;margin-top:8px}
+    thead th{background:#f3f6fb;padding:12px;text-align:left;font-size:13px;color:var(--muted)}
+    tbody td{padding:12px;border-top:1px solid #eef2f7}
+    tbody tr:hover{background:#fbfdff;cursor:pointer}
+    .badge{display:inline-block;padding:6px 8px;border-radius:999px;font-size:12px;background:#eef6ff;color:var(--accent)}
+    .small{font-size:13px;color:var(--muted)}
+    .grid{display:grid;grid-template-columns:1fr 220px;gap:16px;margin-top:16px}
+    .rooms{padding:12px;border-radius:10px;background:#fff}
+    .room-item{padding:10px;border-radius:8px;border:1px solid #eef2f7;margin-bottom:8px}
+    .instructions{margin-top:12px}
+    /* modal */
+    .modal-backdrop{position:fixed;inset:0;background:rgba(2,6,23,0.4);display:none;align-items:center;justify-content:center;padding:20px}
+    .modal{background:#fff;border-radius:12px;max-width:720px;width:100%;padding:18px}
+    .modal h3{margin:0 0 6px}
+    .close-btn{background:transparent;border:0;font-size:18px;cursor:pointer}
+    .no-data{padding:30px;text-align:center;color:var(--muted)}
+    footer{margin-top:18px;font-size:13px;color:var(--muted);text-align:center}
+    @media (max-width:800px){.grid{grid-template-columns:1fr}}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div>
+        <h1>Lab Sessions</h1>
+        <p class="lead">Find your lab timetable, room allocations, and instructions for each practical session.</p>
+      </div>
+      <div class="small">University of Sri Jayawardenepura</div>
+    </header>
+
+    <div class="card">
+      <div class="controls">
+        <input id="search" placeholder="Search by course, instructor or room" />
+        <select id="filter-day">
+          <option value="">All days</option>
+          <option>Monday</option>
+          <option>Tuesday</option>
+          <option>Wednesday</option>
+          <option>Thursday</option>
+          <option>Friday</option>
+        </select>
+        <select id="filter-sem">
+          <option value="">All semesters</option>
+          <option>Semester 1</option>
+          <option>Semester 2</option>
+        </select>
+        <button id="clear">Clear</button>
+      </div>
+
+      <div class="grid">
+        <div>
+          <table id="timetable">
+            <thead>
+              <tr>
+                <th>Day & Time</th>
+                <th>Course</th>
+                <th>Room</th>
+                <th>Instructor</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+          <div id="empty" class="no-data" style="display:none">No sessions found.</div>
+        </div>
+
+        <aside class="rooms card">
+          <h4 style="margin-top:0">Room allocations</h4>
+          <div id="rooms-list">
+            <!-- room items injected -->
+          </div>
+
+          <div class="instructions">
+            <h4 style="margin:8px 0 6px">General instructions</h4>
+            <ol style="padding-left:18px;margin:0;color:var(--muted)">
+              <li>Arrive 10 minutes before the scheduled start.</li>
+              <li>Bring your student ID and lab notes.</li>
+              <li>Follow the instructor's safety briefing.</li>
+              <li>If you cannot attend, notify the lab coordinator.</li>
+            </ol>
+          </div>
+        </aside>
+      </div>
+
+    </div>
+
+    <footer>Tip: Click any timetable row to open detailed session instructions.</footer>
+  </div>
+
+  <!-- Modal -->
+  <div id="modal" class="modal-backdrop" role="dialog" aria-hidden="true">
+    <div class="modal" role="document">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px">
+        <h3 id="modal-title">Session details</h3>
+        <button class="close-btn" id="close">✕</button>
+      </div>
+      <div id="modal-body"></div>
+    </div>
+  </div>
+
+  <script>
+    // Sample data
+    const sessions = [
+      {id:1, day:'Monday', time:'09:00 - 11:00', course:'CS101 — Programming Lab', room:'Lab A (Bldg C)', instructor:'Dr. H. Perera', semester:'Semester 1', capacity:24, notes:'Bring laptop, USB drive. Intro to IDE and git.'},
+      {id:2, day:'Monday', time:'11:30 - 13:30', course:'PH201 — Physics Practical', room:'Physics Lab 2', instructor:'Ms. K. Silva', semester:'Semester 1', capacity:20, notes:'Safety goggles required. Read experiment 3 before coming.'},
+      {id:3, day:'Wednesday', time:'14:00 - 16:00', course:'IT205 — Networking Lab', room:'Network Lab', instructor:'Mr. S. Fernando', semester:'Semester 2', capacity:18, notes:'Bring Ethernet cable if you have one. Practice on packet sniffing.'},
+      {id:4, day:'Friday', time:'10:00 - 12:00', course:'BI110 — Biology Practical', room:'Bio Lab', instructor:'Dr. N. Jayasuriya', semester:'Semester 1', capacity:16, notes:'Wear lab coat and closed shoes. Prepare slides from week readings.'}
+    ];
+
+    // Render timetable
+    const tbody = document.querySelector('#timetable tbody');
+    const roomsList = document.getElementById('rooms-list');
+    const empty = document.getElementById('empty');
+
+    function render(data){
+      tbody.innerHTML='';
+      if(!data.length){ empty.style.display='block'; return; } else empty.style.display='none';
+      data.forEach(s=>{
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+          <td><strong>${s.day}</strong><div class="small">${s.time}</div></td>
+          <td>${s.course} <div class="small">${s.semester}</div></td>
+          <td><span class="badge">${s.room}</span></td>
+          <td>${s.instructor}</td>`;
+        tr.addEventListener('click',()=>openModal(s));
+        tbody.appendChild(tr);
+      });
+
+      // rooms
+      const rooms = Array.from(new Map(data.map(x=>[x.room,x])).values());
+      roomsList.innerHTML='';
+      rooms.forEach(r=>{
+        const div = document.createElement('div');
+        div.className='room-item';
+        div.innerHTML=`<strong>${r.room}</strong><div class="small">Capacity: ${r.capacity} — Next: ${r.day} ${r.time}</div>`;
+        roomsList.appendChild(div);
+      });
+    }
+
+    function openModal(session){
+      document.getElementById('modal-title').textContent = `${session.course} — ${session.day} ${session.time}`;
+      document.getElementById('modal-body').innerHTML = `
+        <p class="small">Instructor: <strong>${session.instructor}</strong></p>
+        <p class="small">Room: <strong>${session.room}</strong></p>
+        <h4 style="margin-bottom:6px">Session instructions</h4>
+        <p style="margin-top:0;color:var(--muted)">${session.notes}</p>
+        <p class="small">Capacity: ${session.capacity} students</p>
+      `;
+      const modal = document.getElementById('modal');
+      modal.style.display='flex';
+      modal.setAttribute('aria-hidden','false');
+    }
+
+    document.getElementById('close').addEventListener('click',()=>{
+      const modal = document.getElementById('modal'); modal.style.display='none'; modal.setAttribute('aria-hidden','true');
+    });
+
+    // filters
+    const search = document.getElementById('search');
+    const filterDay = document.getElementById('filter-day');
+    const filterSem = document.getElementById('filter-sem');
+    const clearBtn = document.getElementById('clear');
+
+    function applyFilters(){
+      const q = search.value.trim().toLowerCase();
+      const day = filterDay.value;
+      const sem = filterSem.value;
+      const filtered = sessions.filter(s=>{
+        const inSearch = q === '' || (s.course+s.instructor+s.room).toLowerCase().includes(q);
+        const matchDay = day === '' || s.day === day;
+        const matchSem = sem === '' || s.semester === sem;
+        return inSearch && matchDay && matchSem;
+      });
+      render(filtered);
+    }
+
+    [search, filterDay, filterSem].forEach(el=>el.addEventListener('input',applyFilters));
+    clearBtn.addEventListener('click',()=>{search.value='';filterDay.value='';filterSem.value='';applyFilters();});
+
+    // initial render
+    render(sessions);
+
+    // close modal on backdrop click
+    document.getElementById('modal').addEventListener('click',(e)=>{ if(e.target===e.currentTarget) { e.currentTarget.style.display='none'; e.currentTarget.setAttribute('aria-hidden','true'); }});
+  </script>
+</body>
+</html>
